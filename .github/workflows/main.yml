@@ -1,0 +1,33 @@
+name: Flutter Build for Windows
+
+on:
+  push:
+    branches: []
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.22.2  # specify the Flutter version you want to use
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Windows executable
+        run: flutter build windows
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: flutter-windows
+          path: build/windows/runner/Release/
+
+
