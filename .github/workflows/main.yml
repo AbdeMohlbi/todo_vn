@@ -16,7 +16,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: master
-          version: latest   # specify the Flutter version you want to use
+
 
       - name: Install dependencies
         run: flutter pub get
@@ -29,3 +29,10 @@ jobs:
         with:
           name: flutter-windows
           path: build/windows/x64/runner/Release/
+
+      - name: Package Release files
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: local_api_server-${{github.ref_name}}-windows.zip
+          directory: build/windows/x64/runner/Release/
