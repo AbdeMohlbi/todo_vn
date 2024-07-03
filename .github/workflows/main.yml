@@ -16,7 +16,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: master
-          flutter-version: 'latest'   # specify the Flutter version you want to use
+          flutter-version: latest   # specify the Flutter version you want to use
 
       - name: Install dependencies
         run: flutter pub get

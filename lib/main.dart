@@ -28,7 +28,6 @@ class TodoApp extends StatelessWidget {
 class Contact {
   final int id;
   final String name;
-
   Contact({required this.name}) : id = Random().nextInt(5);
 }
 
