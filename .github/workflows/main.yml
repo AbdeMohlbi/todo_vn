@@ -36,3 +36,10 @@ jobs:
           type: 'zip'
           filename: local_api_server-${{github.ref_name}}-windows.zip
           directory: build/windows/x64/runner/Release/
+      - name: Release to github
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{github.ref_name}}
+          files: build/windows/x64/runner/Release/local_api_server-${{github.ref_name}}-windows.zip
