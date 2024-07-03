@@ -30,4 +30,20 @@ jobs:
           name: flutter-windows
           path: build/windows/runner/Release/
 
+      - name: Create Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v1.0.${{github.run_number}}  # Tag name for the release, you can set this dynamically if needed
+        draft: false
+        prerelease: false
 
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/windows/runner/Release/
+          asset_name: YourAppName-Windows-Executable
+          asset_content_type: application/octet-stream
