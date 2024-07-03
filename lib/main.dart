@@ -19,8 +19,7 @@ class TodoApp extends StatelessWidget {
       ),
       home: const AppScreen(),
       routes: {
-        '/new_contact': (context) => const newContactView(),
-        // '/':
+        '/new_contact': (context) => const NewContactView(),
       },
     );
   }
@@ -123,120 +122,14 @@ class AppScreenState extends State<AppScreen> {
   }
 }
 
-/*
-
-class AppScreenState extends State<AppScreen> {
-  void _addTodo() {
-    final TextEditingController titleController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          icon: const Icon(Icons.add),
-          title: const Text('New To-Do'),
-          scrollable: true,
-          alignment: Alignment.center,
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(
-                controller: titleController,
-                maxLines: null,
-                decoration: const InputDecoration(
-                    hintText: "to-do title", counterText: "title"),
-              ),
-              TextField(
-                  maxLines: null,
-                  controller: descriptionController,
-                  decoration: const InputDecoration(
-                      hintText: "to-do description",
-                      counterText: "description")),
-            ],
-          ),
-          actions: [
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-                child: const Text('Add'),
-                onPressed: () async {
-                  await DatabaseHelper.addNote(
-                      (titleController.text, descriptionController.text));
-
-                  setState(() {
-                    // provider
-                  });
-                  context.mounted ? Navigator.of(context).pop() : null;
-                })
-          ],
-        );
-      },
-    );
-  }
+class NewContactView extends StatefulWidget {
+  const NewContactView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black87,
-        extendBody: false,
-        appBar: AppBar(
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.space_dashboard_outlined,
-                  color: Colors.white,
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.done_all_outlined,
-                    color: Colors.orange,
-                  )),
-              const Spacer(),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.settings_rounded,
-                    color: Colors.white,
-                  )),
-            ],
-          ),
-          backgroundColor: Colors.black,
-          elevation: 20,
-        ),
-        body: const TodoListScreen(),
-        floatingActionButton: FloatingActionButton(
-          shape: const CircleBorder(),
-          backgroundColor: Colors.orange,
-          onPressed: _addTodo,
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ));
-  }
+  State<NewContactView> createState() => _NewContactViewState();
 }
 
- */
-class newContactView extends StatefulWidget {
-  const newContactView({super.key});
-
-  @override
-  State<newContactView> createState() => _newContactViewState();
-}
-
-class _newContactViewState extends State<newContactView> {
+class _NewContactViewState extends State<NewContactView> {
   late final TextEditingController _controller;
 
   @override
